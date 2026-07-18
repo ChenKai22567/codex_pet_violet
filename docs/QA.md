@@ -15,13 +15,20 @@
 
 ## Change isolation
 
-Only idle cells `r0c0` through `r0c5` changed in the final atlas.
+Only idle cells `r0c0` through `r0c5` changed in the hair-outline repair.
 
 - Dedicated neutral cell `r0c6`: unchanged
 - Unused idle cell `r0c7`: unchanged
-- Rows 1 through 10: byte-for-byte RGBA pixel-equivalent to the previously installed optimized atlas
-- Previous atlas SHA-256: `c8ec4fda9dec4192a2d23abca3f0ea8472f553c7fef0bffbcb2697f170ce2612`
-- Final atlas SHA-256: `655cdd26b48e38c3c010309fc94d106691a048baf0510f49f93a089178eaac07`
+- Rows 1 through 10: byte-for-byte RGBA pixel-equivalent to the previously published optimized atlas
+- Previous published atlas SHA-256: `655cdd26b48e38c3c010309fc94d106691a048baf0510f49f93a089178eaac07`
+- Final repaired atlas SHA-256: `f8a554134d97de4c5328afab6c91127a29a7e3b1153535f84d08cfc28dbc9526`
+
+## Hair-outline repair
+
+- All six idle frames reuse the exact clean original hair silhouette and alpha channel.
+- Open-eye gaze is produced only inside the two original eye apertures with a two-pixel horizontal shift.
+- Every pixel outside the eye apertures is identical to its clean source frame.
+- Light- and dark-background edge checks show a single stable hair contour with no generated matte fringe.
 
 ## Visual artifacts
 
@@ -33,4 +40,4 @@ The idle loop is intentionally low-distraction: the feet remain planted, the sil
 
 ## Independent visual review
 
-PASS. The autonomous idle visibly but subtly glances left and right with two natural blinks; identity, proportions, and baseline remain stable. No body travel, jumping, props, or effects appear in the idle loop. Rows 1–10 match the intentionally accepted hover-review baseline, and all 16 look directions remain complete and coherent.
+PASS. On both light and dark backgrounds, all six idle frames show one crisp stable hair outline with no halo, doubled contour, blur, or afterimage. Left/right gaze, two blinks, identity, body registration, rows 1–10, and v2 validation all pass; all 16 look directions remain complete and coherent.
