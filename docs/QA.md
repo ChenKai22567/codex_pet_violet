@@ -55,3 +55,18 @@ Only failed cells `r5c3`, `r5c4`, and `r5c5` changed from the hair-outline relea
 - [Optimized failed preview](../previews/failed-optimized.gif)
 
 Independent visual review: PASS. Frames 3–5 now form a smooth `181 → 171 → 167` pixel slump into unchanged frame 6; proportions, identity, edges, directions, and dark-background cleanup remain stable. The repair removes the unintended camera-zoom effect while preserving the palette, pixel-art identity, and failed-state semantics.
+
+## Failed-row ghosting correction
+
+The first transition-repair assembly alpha-pasted the new transparent sprites over uncleared atlas cells. Transparent regions therefore exposed pixels from the older, larger character underneath and produced a visible double image while crouching.
+
+- Rebuilt from the clean pre-transition atlas instead of the faulty composite.
+- Cleared the complete `r5c3`, `r5c4`, and `r5c5` cells before compositing the approved replacement sprites.
+- Each finalized repaired cell is pixel-identical to its replacement-only source.
+- Extra visible pixels outside each replacement sprite: `0 / 0 / 0`.
+- Transparent RGB residue: `0` pixels.
+- Changed cells versus the clean pre-transition atlas: exactly `r5c3`, `r5c4`, and `r5c5`.
+- Faulty composite SHA-256: `eec2484eddc9f750ec98323683c7f8605fa54072ae8bde4e1a36b46e9f6af229`.
+- Ghost-free atlas SHA-256: `0a5c40e02271b1fe7d714d90e00fb74288c11e7cbd8a3e50c5ec00ea997d35b8`.
+
+Independent visual review: PASS. Frames 3–5 show single clean silhouettes with no ghosting or doubled outlines, transition smoothly from frame 2 through frame 6, and preserve Violet's identity and every other animation row. The v2 atlas validator also passes with no errors or warnings.
