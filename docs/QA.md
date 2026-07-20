@@ -70,3 +70,26 @@ The first transition-repair assembly alpha-pasted the new transparent sprites ov
 - Ghost-free atlas SHA-256: `0a5c40e02271b1fe7d714d90e00fb74288c11e7cbd8a3e50c5ec00ea997d35b8`.
 
 Independent visual review: PASS. Frames 3–5 show single clean silhouettes with no ghosting or doubled outlines, transition smoothly from frame 2 through frame 6, and preserve Violet's identity and every other animation row. The v2 atlas validator also passes with no errors or warnings.
+
+## Idle blink stability and crouch-edge repair
+
+Two additional motion defects were corrected without regenerating or changing the approved poses.
+
+### Idle stability
+
+- `r0c0` supplies the complete stationary sprite, transparency, silhouette, body, clothing, feet, and baseline for all six idle frames.
+- Only two fixed eye apertures are copied from each original frame, preserving the autonomous left glance, blink, right glance, blink, and neutral sequence.
+- Every idle frame now has the same alpha mask and `37,5–154,203` bounding box.
+- Pixels outside the two eye apertures differ from `r0c0` by exactly `0` in every idle frame.
+
+### Failed-row outline clarity
+
+- Only bright pixels on the one-pixel visible boundary of `r5c3`, `r5c4`, and `r5c5` were darkened moderately.
+- Pose geometry, alpha, bounding boxes, and visible-pixel counts are unchanged.
+- Boundary dark-pixel ratios increased from `0.808 / 0.775 / 0.732` to `0.930 / 0.878 / 0.890`.
+- All other cells remain pixel-identical to the previous ghost-free release.
+
+- Previous atlas SHA-256: `0a5c40e02271b1fe7d714d90e00fb74288c11e7cbd8a3e50c5ec00ea997d35b8`.
+- Final atlas SHA-256: `edade1ca721d73d21b75588a6dd89cb0cc766f7f5230696adc368ad417cc302a`.
+
+Independent visual review: PASS. The idle blink loop holds a stable silhouette and baseline with natural eye motion and no eye-patch seam. The failed crouch transition has crisp readable edges on dark and light backgrounds, without a harsh halo, added jagged outline, ghosting, blur, or pose change. All other animation rows and look directions remain intact, and v2 validation passes with no errors or warnings.
